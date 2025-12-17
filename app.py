@@ -812,5 +812,9 @@ def get_conflicts(session_id):
     return jsonify({'success': True, 'conflicts': timetables[session_id].get('conflicts', [])})
 
 if __name__ == "__main__":
-    # Remove debug=True and port=5000
-    app.run(host="0.0.0.0")
+    # Remove debug=True and port
+    # Railway sets port automatically via $PORT environment variable
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
